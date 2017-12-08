@@ -11,10 +11,10 @@ public class Main {
         // Why? It is NOT overriding - you cannot write @Override annotation.
         // This is just creation new method. Это логично, т.к. ты напрямую обращаешься к методу,
         // сразу будет известно какой метод запуститься
-        new O().m();
-        new P().m();
-        O.m();
-        P.m();
+        new Parent().m();
+        new Child().m();
+        Parent.m();
+        Child.m();
         System.out.println("It is not overriding. Just new method definition");
 
         // call static method in non-static class - FAIL
@@ -31,10 +31,21 @@ public class Main {
         System.out.println();
 
         // Upcasting
-        O o = new P(); // Upcasting
-        P p = new O(); // don`t think so
-        Integer i = new Number(); // some weird
-        Number n = new Integer(10); // OK (upcasting)
+        Parent parent = new Parent(); // Upcasting - OK
+        Parent parent2 = new Child(); // Upcasting - OK
+//        Child child = new Parent(); // don`t think so - FAIL
+        Child child = new Child();
+//        Child child2 = (Child) new Parent(); // FAIL - downcasting, but thrown ClassCastException at runtime
+        Child child3 = (Child) parent2; // downcasting - OK
+        System.out.println(parent instanceof Parent); // true
+        System.out.println(parent instanceof Child); // FALSE
+        System.out.println(parent2 instanceof Parent); // true
+        System.out.println(parent2 instanceof Child); // true
+        System.out.println(child instanceof Parent); // true
+        System.out.println(child instanceof Child); // true
+        System.out.println(child3 instanceof Parent); // true
+        System.out.println(child3 instanceof Child); // true
+
 //        System.out.println("Start here.");
 //        StringBuilder stringBuilder = new StringBuilder("start");
 //        for (int i = 0; i < Integer.MAX_VALUE; i++) {
@@ -44,7 +55,6 @@ public class Main {
 //
 //        System.out.println("Finish");
     }
-
 
     /*
     inner interface always static
@@ -84,13 +94,13 @@ public class Main {
     }
 
     // override static method - OK
-    static class O {
+    static class Parent {
         public static void m() {
             System.out.println("O static method");
         }
     }
 
-    static class P extends O {
+    static class Child extends Parent {
         public static void m() {
             System.out.println("P static method");
         }
