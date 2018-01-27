@@ -1,4 +1,4 @@
-package com.beltser;
+package com.beltser.lab;
 
 public class Main {
     public static void main(String[] args) {
@@ -65,8 +65,9 @@ public class Main {
         public static final int test = 1;
 
         public String method();
+
         // static methods always default
-        public static void staticMethod(){
+        public static void staticMethod() {
 
         }
     }
@@ -111,6 +112,7 @@ public class Main {
             System.out.println("O static method");
         }
     }
+
     static class Pi extends Oi {
         public static void m() {
             System.out.println("P static method");
@@ -119,9 +121,30 @@ public class Main {
 
     // You can get access to field via inner NON-static class
     private int secretField = 100;
+
     class Si {
         void m() {
             secretField = 0; // Ha-ha!
+        }
+    }
+
+    interface I1 {
+        default void m() {
+
+        }
+    }
+
+    interface I2 {
+        default void m() {
+
+        }
+    }
+
+    class Impl implements I1, I2 {
+        @Override
+        public void m() {
+            I1.super.m();
+            I2.super.m();
         }
     }
 }

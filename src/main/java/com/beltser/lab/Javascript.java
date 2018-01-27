@@ -1,4 +1,4 @@
-package com.beltser;
+package com.beltser.lab;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;

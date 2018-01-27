@@ -1,4 +1,4 @@
-package com.beltser.java8;
+package com.beltser.lab.java8;
 
 import java.time.*;
 import java.time.temporal.ChronoUnit;

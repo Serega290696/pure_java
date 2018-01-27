@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Welcome"
-not_empty_file='test.sh'
+echo "Welcome. Filename: \$0 = $0"
+not_empty_file=$0
 
 if [ -s $not_empty_file ]
 then
@@ -26,4 +26,9 @@ echo $?
 if ! [[ -x $not_empty_file && ( -s $not_empty_file || -r $not_empty_file) ]]
 then
     echo "complex if statement OK"
+fi
+
+
+if (( 11 % 2 == 1)); then
+    echo Ariphmetic condition is OK
 fi

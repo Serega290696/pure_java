@@ -1,4 +1,4 @@
-package com.beltser;
+package com.beltser.lab;
 
 public class InitOrder {
     public static void main(String[] args) {
