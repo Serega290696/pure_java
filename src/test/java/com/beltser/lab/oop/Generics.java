@@ -30,7 +30,8 @@ public class Generics {
             // compile-time ERROR.
             // The overloads would all share the same classfile representation and will generate a compile-time error.
 //            public void print(List<String> strSet) { }
-            public void print(List<Integer> intSet) { }
+            public void print(List<Integer> intSet) {
+            }
         }
     }
 
@@ -83,6 +84,12 @@ public class Generics {
          */
     }
 
+    // Такой метод когда мы например хотим скопировать список телефонов в список техники
+    // ведь это вполне логичная операция.
+    private <T extends Number> void copy(List<T> src, List<? extends T> dest) {
+
+    }
+
     static class A<T extends Number> {
         // while class contain generic, constructor contain its own another generic
         // for invocation:
@@ -95,6 +102,10 @@ public class Generics {
         public <T> A(T arg) {
             System.out.println(arg);
         }
+    }
+
+    static class Z<T extends Number> extends ArrayList<Number> {
+        T i;
     }
 }
 
