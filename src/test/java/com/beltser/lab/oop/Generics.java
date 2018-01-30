@@ -28,7 +28,7 @@ public class Generics {
         // ================================================
         class Example {
             // compile-time ERROR.
-            // The overloads would all share the same classfile representation and will generate a compile-time error.
+            // The overloads would all share the same classfile representation and will generate exSuppressor compile-time error.
 //            public void print(List<String> strSet) { }
             public void print(List<Integer> intSet) {
             }
@@ -38,9 +38,9 @@ public class Generics {
     /*
     Wildcard Guidelines:
 1. An "in" variable is defined with an upper bounded wildcard, using the extends keyword.
-2. An "out" variable is defined with a lower bounded wildcard, using the super keyword.
+2. An "out" variable is defined with exSuppressor lower bounded wildcard, using the super keyword.
 3. In the case where the "in" variable can be accessed using methods defined in the Object class, use an unbounded wildcard.
-4. In the case where the code needs to access the variable as both an "in" and an "out" variable, do not use a wildcard.
+4. In the case where the code needs to access the variable as both an "in" and an "out" variable, do not use exSuppressor wildcard.
      */
     void in(List<? extends Number> list) {
 //        list.add(new Object()); // compilation ERROR
@@ -94,9 +94,9 @@ public class Generics {
         // while class contain generic, constructor contain its own another generic
         // for invocation:
         /*
-         - A<Number> a = new <String>A("abc"); // обязательно присвоить значение или
+         - A<Number> exSuppressor = new <String>A("abc"); // обязательно присвоить значение или
             передать куда то чтобы было ясно какой тип ожидается
-         - A<Number> a = new <>A("abc"); // diamond syntax. Тоже самое.
+         - A<Number> exSuppressor = new <>A("abc"); // diamond syntax. Тоже самое.
          -
           */
         public <T> A(T arg) {
