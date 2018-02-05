@@ -32,19 +32,48 @@
 
 
         <!-- todo DELETE ONE OF UNIT TEST FRAMEWORKS  -->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.0.0-M1</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
+            <version>5.1.0-M1</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>junit</groupId>-->
+            <!--<artifactId>junit</artifactId>-->
+            <!--<version>4.12</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <!--<dependency>-->
+            <!--<groupId>junit</groupId>-->
+            <!--<artifactId>junit</artifactId>-->
+            <!--<version>3.8.2</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <!-- https://mvnrepository.com/artifact/org.junit/junit5-engine -->
+        <!--<dependency>-->
+            <!--<groupId>junit</groupId>-->
+            <!--<artifactId>junit</artifactId>-->
+            <!--<version>4.12</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.seitenbau.testing</groupId>-->
+            <!--<artifactId>sb-junitrecorder-skin</artifactId>-->
+            <!--<version>1.0.0</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -62,47 +91,47 @@
     </build>
 
     <profiles>
-        <!--<profile>-->
-            <!--<id>annot_processing</id>-->
-            <!--<activation>-->
-                <!--<activeByDefault>false</activeByDefault>-->
-            <!--</activation>-->
-            <!--<dependencies>-->
+        <profile>
+            <id>annot_processing</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.google.auto.service</groupId>
+                    <artifactId>auto-service</artifactId>
+                    <version>${auto-service.version}</version>
+                    <scope>provided</scope>
+                </dependency>
                 <!--<dependency>-->
-                    <!--<groupId>com.google.auto.service</groupId>-->
-                    <!--<artifactId>auto-service</artifactId>-->
-                    <!--<version>${auto-service.version}</version>-->
-                    <!--<scope>provided</scope>-->
+                <!--<groupId>com.baeldung</groupId>-->
+                <!--<artifactId>annotation-processing</artifactId>-->
+                <!--<version>1.0.0-SNAPSHOT</version>-->
+                <!--&lt;!&ndash;<scope>provided</scope>&ndash;&gt;-->
                 <!--</dependency>-->
-                <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>com.baeldung</groupId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<artifactId>annotation-processing</artifactId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<version>1.0.0-SNAPSHOT</version>&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;<scope>provided</scope>&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
-            <!--</dependencies>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.apache.maven.plugins</groupId>-->
-                        <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                        <!--&lt;!&ndash;<version>3.5.1</version>&ndash;&gt;-->
-                        <!--<configuration>-->
-                            <!--&lt;!&ndash;<source>1.8</source>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<target>1.8</target>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<encoding>UTF-8</encoding>&ndash;&gt;-->
-                            <!--<generatedSourcesDirectory>${project.build.directory}-->
-                                <!--/generated-sources/-->
-                            <!--</generatedSourcesDirectory>-->
-                            <!--<annotationProcessors>-->
-                                <!--<annotationProcessor>-->
-                                    <!--com.beltser.lab.oop.MyProcessor-->
-                                <!--</annotationProcessor>-->
-                            <!--</annotationProcessors>-->
-                        <!--</configuration>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <!--<version>3.5.1</version>-->
+                        <configuration>
+                            <!--<source>1.8</source>-->
+                            <!--<target>1.8</target>-->
+                            <!--<encoding>UTF-8</encoding>-->
+                            <generatedSourcesDirectory>${project.build.directory}
+                                /generated-sources/
+                            </generatedSourcesDirectory>
+                            <annotationProcessors>
+                                <annotationProcessor>
+                                    com.beltser.lab.oop.MyProcessor
+                                </annotationProcessor>
+                            </annotationProcessors>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>
