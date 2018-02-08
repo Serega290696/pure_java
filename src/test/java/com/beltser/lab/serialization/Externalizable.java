@@ -1,10 +1,15 @@
 package com.beltser.lab.serialization;
 
+import org.junit.FixMethodOrder;
+import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
 public class Externalizable {
+
+    private static final String pathname = "serial_data.bin";
 
     @Test
     void serialise() {
@@ -15,7 +20,7 @@ public class Externalizable {
         s.setSuperClassString("WOW");
         s.setObject(new InjectedObject(true));
         try {
-            File file = new File("serial_data.bin");
+            File file = new File(pathname);
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
             s.writeExternal(out);
@@ -27,8 +32,24 @@ public class Externalizable {
     }
 
     @Test
+    @Disabled
     void read() throws Exception {
-        File file = new File("serial_data.bin");
+        File file = new File(pathname);
+        FileInputStream fin = new FileInputStream(file);
+        ObjectInputStream in = new ObjectInputStream(fin);
+        ForSerial serial = new ForSerial();
+        serial.readExternal(in);
+        System.out.println(serial);
+        System.out.println("serial.getI() = " + serial.getI());
+        System.out.println("serial.getS() = " + serial.getS());
+        System.out.println("serial.getObject() = " + serial.getObject());
+        System.out.println("serial.getSuperClassString() = " + serial.getSuperClassString());
+        in.close();
+    }
+    private static ForSerial deresealized;
+    @Test
+    void read2() throws Exception {
+        File file = new File(pathname);
         FileInputStream fin = new FileInputStream(file);
         ObjectInputStream in = new ObjectInputStream(fin);
         ForSerial serial = new ForSerial();
@@ -58,6 +79,16 @@ public class Externalizable {
         private String s;
         transient private String[] array;
         transient private InjectedObject object;
+
+        public ForSerial() {
+        }
+
+//        public ForSerial(int i, String s, String[] array, InjectedObject object) {
+//            this.i = i;
+//            this.s = s;
+//            this.array = array;
+//            this.object = object;
+//        }
 
         private void writeObject(ObjectOutputStream out) throws IOException {
             out.defaultWriteObject();
@@ -103,12 +134,19 @@ public class Externalizable {
 
         @Override
         public void writeExternal(ObjectOutput out) throws IOException {
-            out.writeObject("Tyt bul Vasya");
+            out.writeObject(this);
+//            out.writeObject("Tyt bul Vasya");
         }
 
         @Override
         public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-            setS((String) in.readObject());
+            deresealized = (ForSerial)
+                    in.readObject();
+            setS(deresealized.getS());
+            setI(deresealized.getI());
+            setArray(deresealized.getArray());
+            setObject(deresealized.getObject());
+//            setS((String) in.readObject());
         }
     }
 
